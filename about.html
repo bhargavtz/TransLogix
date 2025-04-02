@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TransLogix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .timeline-line {
+            width: 2px;
+            background-color: #3B82F6;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            top: 0;
+        }
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background-color: #3B82F6;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation (Same as index.html) -->
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">TransLogix</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                    <a href="/about.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                    <a href="/services.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
+                    <a href="/tracking.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
+                    <a href="/contact.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+                <a href="/about.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="/services.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Services</a>
+                <a href="/tracking.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Tracking</a>
+                <a href="/contact.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">Discover how TransLogix became a leading force in global logistics, delivering excellence and innovation in transportation solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who We Are</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">TransLogix is a leading global logistics provider with over two decades of experience in delivering innovative transportation solutions. Our commitment to excellence and customer satisfaction has made us a trusted partner for businesses worldwide.</p>
+                    <p class="text-gray-600 dark:text-gray-300">We combine cutting-edge technology with extensive industry expertise to provide seamless logistics services that help our clients succeed in today's competitive market.</p>
+                </div>
+                <div class="relative h-96 rounded-lg overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-truck-moving text-8xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Our Journey</h2>
+            <div class="relative">
+                <div class="timeline-line"></div>
+                <div class="space-y-24">
+                    <div class="relative">
+                        <div class="timeline-dot top-0"></div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 timeline-item">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">2000 - Foundation</h3>
+                            <p class="text-gray-600 dark:text-gray-300">TransLogix was founded with a vision to revolutionize the logistics industry.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="timeline-dot top-0"></div>
+                        <div class="ml-12 md:ml-[50%] md:pl-12 timeline-item">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">2010 - Global Expansion</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Expanded operations to over 50 countries worldwide.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="timeline-dot top-0"></div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 timeline-item">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">2015 - Digital Innovation</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Launched our advanced tracking system and digital platform.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="timeline-dot top-0"></div>
+                        <div class="ml-12 md:ml-[50%] md:pl-12 timeline-item">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">2024 - Present Day</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Leading the industry with sustainable logistics solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Our Leadership Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="group relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg transform transition duration-300 hover:-translate-y-2">
+                    <div class="aspect-w-1 aspect-h-1 bg-gray-200 dark:bg-gray-700">
+                        <div class="p-6 flex items-center justify-center h-64">
+                            <i class="fas fa-user-circle text-8xl text-gray-400 dark:text-gray-600"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">John Smith</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">CEO & Founder</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="group relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg transform transition duration-300 hover:-translate-y-2">
+                    <div class="aspect-w-1 aspect-h-1 bg-gray-200 dark:bg-gray-700">
+                        <div class="p-6 flex items-center justify-center h-64">
+                            <i class="fas fa-user-circle text-8xl text-gray-400 dark:text-gray-600"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Sarah Johnson</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">COO</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="group relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg transform transition duration-300 hover:-translate-y-2">
+                    <div class="aspect-w-1 aspect-h-1 bg-gray-200 dark:bg-gray-700">
+                        <div class="p-6 flex items-center justify-center h-64">
+                            <i class="fas fa-user-circle text-8xl text-gray-400 dark:text-gray-600"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Michael Chen</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">CTO</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">TransLogix</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Your trusted logistics partner worldwide</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About Us</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Services</a></li>
+                        <li><a href="/tracking.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Track Shipment</a></li>
+                        <li><a href="/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Air Freight</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Sea Freight</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Road Transport</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Warehousing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-600 dark:text-gray-300">&copy; 2024 TransLogix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Animate timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                x: item.classList.contains('md:ml-[50%]') ? 50 : -50,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Animate team members
+        const teamMembers = document.querySelectorAll('.group');
+        teamMembers.forEach((member, index) => {
+            gsap.from(member, {
+                scrollTrigger: {
+                    trigger: member,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

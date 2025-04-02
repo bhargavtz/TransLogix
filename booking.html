@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book & Quote - TransLogix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation (Same as other pages) -->
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">TransLogix</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                    <a href="/about.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                    <a href="/services.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
+                    <a href="/tracking.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
+                    <a href="/contact.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+                <a href="/about.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="/services.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Services</a>
+                <a href="/tracking.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Tracking</a>
+                <a href="/contact.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Book Your Shipment</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Get instant quotes and book your logistics services with ease</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Calculator and Booking Form Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Quote Calculator -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Get an Instant Quote</h2>
+                    <form id="quoteForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">From</label>
+                                <select class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                    <option value="">Select City</option>
+                                    <option value="mumbai">Mumbai</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="bangalore">Bangalore</option>
+                                    <!-- Add more cities -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">To</label>
+                                <select class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                    <option value="">Select City</option>
+                                    <option value="mumbai">Mumbai</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="bangalore">Bangalore</option>
+                                    <!-- Add more cities -->
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Service Type</label>
+                            <select class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                <option value="">Select Service</option>
+                                <option value="air">Air Freight</option>
+                                <option value="sea">Sea Freight</option>
+                                <option value="road">Road Transport</option>
+                                <option value="warehouse">Warehousing</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Weight (kg)</label>
+                                <input type="number" class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Dimensions (cm)</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <input type="number" placeholder="L" class="w-full px-2 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                    <input type="number" placeholder="W" class="w-full px-2 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                    <input type="number" placeholder="H" class="w-full px-2 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Calculate Quote</button>
+                    </form>
+
+                    <!-- Quote Result (Initially Hidden) -->
+                    <div id="quoteResult" class="hidden mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Estimated Quote</h3>
+                        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">₹<span id="quoteAmount">0</span></p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">*This is an estimated quote. Final price may vary based on additional services and requirements.</p>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Book Your Service</h2>
+                    <form id="bookingForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
+                                <input type="text" required class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone</label>
+                            <input type="tel" required class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Pickup Address</label>
+                            <textarea required rows="2" class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Delivery Address</label>
+                            <textarea required rows="2" class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Additional Notes</label>
+                            <textarea rows="3" class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">TransLogix</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Your trusted logistics partner worldwide</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About Us</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Services</a></li>
+                        <li><a href="/tracking.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Track Shipment</a></li>
+                        <li><a href="/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Air Freight</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Sea Freight</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Road Transport</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Warehousing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-600 dark:text-gray-300">&copy; 2024 TransLogix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Quote calculator
+        const quoteForm = document.getElementById('quoteForm');
+        const quoteResult = document.getElementById('quoteResult');
+        const quoteAmount = document.getElementById('quoteAmount');
+
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically calculate the quote based on the form inputs
+            // For demo purposes, we'll just show a random quote
+            const randomQuote = Math.floor(Math.random() * 50000) + 10000;
+            quoteAmount.textContent = randomQuote.toLocaleString();
+            quoteResult.classList.remove('hidden');
+        });
+
+        // Booking form
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the booking data to a server
+            alert('Thank you for your booking. We will contact you shortly to confirm the details.');
+            bookingForm.reset();
+        });
+
+        // Animations
+        gsap.from('.hero h1', {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from('.hero p', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from('.bg-white.dark\\:bg-gray-800', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: '.bg-white.dark\\:bg-gray-800',
+                start: "top 80%"
+            }
+        });
+    </script>
+</body>
+</html>

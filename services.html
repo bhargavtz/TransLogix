@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - TransLogix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation (Same as other pages) -->
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">TransLogix</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                    <a href="/about.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                    <a href="/services.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
+                    <a href="/tracking.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
+                    <a href="/contact.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+                <a href="/about.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="/services.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Services</a>
+                <a href="/tracking.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Tracking</a>
+                <a href="/contact.html" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Our Services</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">Comprehensive logistics solutions tailored to meet your transportation needs with efficiency and reliability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-16">
+                <!-- Air Freight -->
+                <div class="service-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Air Freight</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Fast and reliable air freight services for time-sensitive cargo. Our global network ensures your shipments reach their destination on schedule.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Express air freight solutions
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Door-to-door delivery
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Real-time tracking
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="order-1 md:order-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-8 flex items-center justify-center">
+                        <i class="fas fa-plane text-8xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                </div>
+
+                <!-- Sea Freight -->
+                <div class="service-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-8 flex items-center justify-center">
+                        <i class="fas fa-ship text-8xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Sea Freight</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Cost-effective ocean freight solutions for large shipments. We handle everything from container loading to customs clearance.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                FCL and LCL shipping
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Global port coverage
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Custom clearance service
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Road Transport -->
+                <div class="service-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Road Transport</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Flexible and efficient road transportation services. Our modern fleet ensures safe and timely delivery of your cargo.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                National & international routes
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Temperature-controlled transport
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                GPS tracking system
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="order-1 md:order-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-8 flex items-center justify-center">
+                        <i class="fas fa-truck text-8xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                </div>
+
+                <!-- Warehousing -->
+                <div class="service-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-8 flex items-center justify-center">
+                        <i class="fas fa-warehouse text-8xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Warehousing</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">State-of-the-art warehousing facilities with advanced inventory management systems for secure storage of your goods.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Climate-controlled storage
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                24/7 security monitoring
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                Inventory management
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Added Services -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Value Added Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Custom Clearance -->
+                <div class="value-added-item bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="text-blue-600 dark:text-blue-400 mb-4">
+                        <i class="fas fa-file-contract text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Customs Clearance</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Expert handling of customs documentation and procedures for smooth international shipping.</p>
+                </div>
+
+                <!-- Insurance -->
+                <div class="value-added-item bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="text-blue-600 dark:text-blue-400 mb-4">
+                        <i class="fas fa-shield-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Cargo Insurance</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Comprehensive insurance coverage for your valuable shipments during transit.</p>
+                </div>
+
+                <!-- Consulting -->
+                <div class="value-added-item bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="text-blue-600 dark:text-blue-400 mb-4">
+                        <i class="fas fa-comments text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Logistics Consulting</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Professional advice on optimizing your supply chain and logistics operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">TransLogix</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Your trusted logistics partner worldwide</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About Us</a></li>
+                        <li><a href="/services.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Services</a></li>
+                        <li><a href="/tracking.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Track Shipment</a></li>
+                        <li><a href="/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Air Freight</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Sea Freight</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Road Transport</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Warehousing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-600 dark:text-gray-300">&copy; 2024 TransLogix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Animate service items
+        const serviceItems = document.querySelectorAll('.service-item');
+        serviceItems.forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2,
+                ease: "power3.out"
+            });
+        });
+
+        // Animate value added items
+        const valueAddedItems = document.querySelectorAll('.value-added-item');
+        valueAddedItems.forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: index * 0.15,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
