@@ -48,11 +48,17 @@
 
     <!-- Authentication Section -->
     <section class="min-h-screen pt-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="flex flex-wrap -mx-4">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                <!-- Form Toggle Buttons -->
+                <div class="flex mb-8 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                    <button type="button" id="loginToggle" class="w-1/2 py-2 text-center rounded-lg bg-blue-600 text-white font-medium transition-all duration-300">Login</button>
+                    <button type="button" id="registerToggle" class="w-1/2 py-2 text-center rounded-lg text-gray-700 dark:text-gray-300 font-medium transition-all duration-300">Register</button>
+                </div>
+                
                 <!-- Login Form -->
-                <div class="w-full md:w-1/2 px-4 mb-8">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                <div id="loginFormContainer" class="transition-all duration-300">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Welcome Back</h2>
                         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Login</h2>
                         <form id="loginForm" class="space-y-6">
                             <div>
@@ -73,12 +79,10 @@
                             <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Login</button>
                         </form>
                     </div>
-                </div>
 
-                <!-- Registration Form -->
-                <div class="w-full md:w-1/2 px-4 mb-8">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Register</h2>
+                    <!-- Registration Form -->
+                    <div id="registerFormContainer" class="hidden transition-all duration-300">
+                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create Account</h2>
                         <form id="registerForm" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -237,6 +241,46 @@
         darkModeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
             localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+
+        // Form toggle functionality
+        const loginToggle = document.getElementById('loginToggle');
+        const registerToggle = document.getElementById('registerToggle');
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        const registerFormContainer = document.getElementById('registerFormContainer');
+
+        loginToggle.addEventListener('click', () => {
+            loginToggle.classList.add('bg-blue-600', 'text-white');
+            loginToggle.classList.remove('text-gray-700', 'dark:text-gray-300');
+            registerToggle.classList.remove('bg-blue-600', 'text-white');
+            registerToggle.classList.add('text-gray-700', 'dark:text-gray-300');
+            
+            loginFormContainer.classList.remove('hidden');
+            registerFormContainer.classList.add('hidden');
+            
+            // Animation
+            gsap.from(loginFormContainer, {
+                opacity: 0,
+                y: 20,
+                duration: 0.3
+            });
+        });
+
+        registerToggle.addEventListener('click', () => {
+            registerToggle.classList.add('bg-blue-600', 'text-white');
+            registerToggle.classList.remove('text-gray-700', 'dark:text-gray-300');
+            loginToggle.classList.remove('bg-blue-600', 'text-white');
+            loginToggle.classList.add('text-gray-700', 'dark:text-gray-300');
+            
+            registerFormContainer.classList.remove('hidden');
+            loginFormContainer.classList.add('hidden');
+            
+            // Animation
+            gsap.from(registerFormContainer, {
+                opacity: 0,
+                y: 20,
+                duration: 0.3
+            });
         });
 
         // Check for saved dark mode preference
