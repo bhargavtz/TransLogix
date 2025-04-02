@@ -6,7 +6,70 @@
     <title>TransLogix - Advanced Transportation Logistics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Enhanced card animations */
+        .feature-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .feature-card:hover {
+            transform: translateY(-15px) rotateX(10deg);
+            box-shadow: 0 30px 40px -5px rgba(0, 0, 0, 0.2);
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Enhanced navigation effects */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Social icon animations */
+        .social-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .social-icon:hover {
+            transform: scale(1.2) rotate(8deg);
+            filter: brightness(1.2);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body class="bg-white dark:bg-gray-900 transition-colors duration-200">
     <!-- Navigation -->
@@ -17,11 +80,11 @@
                     <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">TransLogix</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
-                    <a href="/about.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
-                    <a href="/services.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
-                    <a href="/tracking.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
-                    <a href="/contact.html" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                    <a href="/" class="nav-link text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                    <a href="/about.html" class="nav-link text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                    <a href="/services.html" class="nav-link text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
+                    <a href="/tracking.html" class="nav-link text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
+                    <a href="/contact.html" class="nav-link text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
                     <a href="/auth.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Login</a>
                     <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                         <i class="fas fa-moon dark:hidden"></i>
@@ -49,40 +112,106 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 transform-gpu parallax-bg"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Global Logistics Solutions</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Your trusted partner in worldwide transportation and logistics services</p>
+                <div class="relative inline-block mb-6">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <h1 class="relative text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">Global Logistics Solutions</h1>
+                </div>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 transform hover:scale-105 transition-transform duration-300">Your trusted partner in worldwide transportation and logistics services</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/tracking.html" class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Track Shipment</a>
+                    <a href="/tracking.html" class="group relative inline-block px-8 py-3 bg-blue-600 text-white rounded-lg overflow-hidden">
+                        <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-full bg-gradient-to-r from-blue-700 to-indigo-700 group-hover:translate-x-0"></span>
+                        <span class="relative">Track Shipment</span>
+                    </a>
                     <a href="/contact.html" class="inline-block px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition duration-300">Get a Quote</a>
+                </div>
+            </div>
+            
+            <!-- Statistics Section -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2 stat-number" data-target="5000">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Shipments Delivered</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2 stat-number" data-target="150">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Global Partners</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2 stat-number" data-target="98">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Customer Satisfaction</div>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2 stat-number" data-target="50">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Countries Served</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 bg-white dark:bg-gray-900">
+    <section class="py-12 md:py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Why Choose TransLogix?</h2>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                    <i class="fas fa-globe text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Global Network</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Extensive worldwide coverage with reliable partners across continents</p>
+                <div class="feature-card group p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    <i class="fas fa-truck text-4xl text-blue-600 mb-4 floating-icon transform group-hover:scale-110 transition-all duration-300"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Ground Transportation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">Efficient and reliable ground transportation services across the continent.</p>
                 </div>
-                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                    <i class="fas fa-clock text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Real-Time Tracking</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Monitor your shipments 24/7 with our advanced tracking system</p>
+                <div class="feature-card group p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    <i class="fas fa-ship text-4xl text-blue-600 mb-4 floating-icon transform group-hover:scale-110 transition-all duration-300"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Ocean Freight</h3>
+                    <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">Global ocean freight solutions for your international shipping needs.</p>
                 </div>
-                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                    <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Secure Transport</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Your cargo's safety is our top priority with insurance coverage</p>
+                <div class="feature-card group p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    <i class="fas fa-plane text-4xl text-blue-600 mb-4 floating-icon transform group-hover:scale-110 transition-all duration-300"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Air Freight</h3>
+                    <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">Fast and secure air freight services for time-sensitive cargo.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-800 dark:to-indigo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-white mb-2"><span class="counter" data-target="150">0</span>+</div>
+                    <p class="text-blue-100">Countries Served</p>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-white mb-2"><span class="counter" data-target="1000">0</span>k+</div>
+                    <p class="text-blue-100">Successful Deliveries</p>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-white mb-2"><span class="counter" data-target="98">0</span>%</div>
+                    <p class="text-blue-100">Customer Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-white mb-2"><span class="counter" data-target="25">0</span>+</div>
+                    <p class="text-blue-100">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Ready to Optimize Your Logistics?</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Let's discuss how we can help streamline your transportation needs</p>
+            <a href="/contact.html" class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transform hover:scale-105 transition duration-300">Get Started Today</a>
         </div>
     </section>
 
@@ -115,10 +244,10 @@
                 <div>
                     <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect With Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon text-gray-600 dark:text-gray-300 hover:text-blue-600"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -129,27 +258,220 @@
     </footer>
 
     <script>
-        // Dark mode toggle
+        // Enhanced counter animation function with easing
+        function animateCounter(element, target) {
+            let current = 0;
+            let progress = 0;
+            const duration = 2000; // 2 seconds
+            const startTime = performance.now();
+
+            function easeOutQuart(x) {
+                return 1 - Math.pow(1 - x, 4);
+            }
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                progress = Math.min(elapsed / duration, 1);
+                
+                current = Math.floor(easeOutQuart(progress) * target);
+                element.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+        }
+
+        // Initialize counters with enhanced intersection observer
+        const counterElements = document.querySelectorAll('.counter');
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '50px'
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    if (!isNaN(target)) {
+                        animateCounter(entry.target, target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        counterElements.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Enhanced dark mode toggle with system preference detection and smooth transitions
         const darkModeToggle = document.getElementById('darkModeToggle');
         const html = document.documentElement;
+        const moonIcon = darkModeToggle.querySelector('.fa-moon');
+        const sunIcon = darkModeToggle.querySelector('.fa-sun');
+
+        function updateTheme(isDark, withTransition = true) {
+            if (withTransition) {
+                html.classList.add('transition-colors');
+            }
+
+            // Update theme
+            html.classList.toggle('dark', isDark);
+            
+            // Smooth icon transition with proper state management
+            moonIcon.style.transition = 'opacity 0.3s ease';
+            sunIcon.style.transition = 'opacity 0.3s ease';
+            
+            if (isDark) {
+                moonIcon.style.opacity = '0';
+                sunIcon.style.opacity = '1';
+                setTimeout(() => {
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                }, 300);
+            } else {
+                sunIcon.style.opacity = '0';
+                moonIcon.style.opacity = '1';
+                setTimeout(() => {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }, 300);
+            }
+            
+            // Store preference
+            localStorage.setItem('darkMode', isDark);
+            
+            if (withTransition) {
+                setTimeout(() => {
+                    html.classList.remove('transition-colors');
+                }, 300);
+            }
+        }
+
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Initialize theme based on stored preference or system preference
+        const storedTheme = localStorage.getItem('darkMode');
+        if (storedTheme !== null) {
+            updateTheme(storedTheme === 'true', false);
+        } else {
+            updateTheme(prefersDark.matches, false);
+        }
+
+        // Listen for system theme changes
+        prefersDark.addEventListener('change', (e) => {
+            if (localStorage.getItem('darkMode') === null) {
+                updateTheme(e.matches);
+            }
+        });
 
         darkModeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('darkMode', html.classList.contains('dark'));
+            const isDark = !html.classList.contains('dark');
+            updateTheme(isDark);
         });
 
         // Check for saved dark mode preference
         if (localStorage.getItem('darkMode') === 'true') {
-            html.classList.add('dark');
+            updateTheme(true);
+        } else {
+            updateTheme(false);
         }
 
-        // Mobile menu toggle
+        // Enhanced mobile menu toggle with smooth transitions and proper state management
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
+        let isMobileMenuOpen = false;
+
+        // Initialize mobile menu styles
+        mobileMenu.style.transition = 'all 0.3s ease-in-out';
+        mobileMenu.style.opacity = '0';
+        mobileMenu.style.transform = 'translateY(-10px)';
+        mobileMenu.style.display = 'none';
+
+        // Mobile menu toggle function with animation
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                mobileMenu.style.display = 'block';
+                // Use requestAnimationFrame to ensure display change is processed
+                requestAnimationFrame(() => {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                });
+            } else {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+                // Wait for transition to complete before hiding
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+            }
+
+            // Update button icon
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+
+        // Add click event listener
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu on window resize if open
+        window.addEventListener('resize', () => {
+            if (isMobileMenuOpen && window.innerWidth >= 768) {
+                toggleMobileMenu();
+            }
+        });
+        mobileMenu.style.transform = 'translateY(-10px)';
+        mobileMenu.style.opacity = '0';
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    mobileMenu.style.transform = 'translateY(0)';
+                    mobileMenu.style.opacity = '1';
+                });
+            } else {
+                mobileMenu.style.transform = 'translateY(-10px)';
+                mobileMenu.style.opacity = '0';
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
         });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenuBtn.click();
+            }
+        });
+
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
         // GSAP Animations
         gsap.from('.hero h1', {
@@ -174,6 +496,55 @@
             delay: 0.6,
             stagger: 0.2,
             ease: 'power3.out'
+        });
+
+        // Animate feature cards on scroll
+        gsap.from('.feature-card', {
+            scrollTrigger: {
+                trigger: '.feature-card',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
+        // Enhanced parallax effect for hero section
+        gsap.to('.parallax-bg', {
+            scrollTrigger: {
+                trigger: '.parallax-bg',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: 200,
+            scale: 1.1,
+            ease: 'none'
+        });
+
+        // Statistics counter animation
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 50;
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    stat.textContent = Math.ceil(current).toLocaleString();
+                    requestAnimationFrame(updateCount);
+                } else {
+                    stat.textContent = target.toLocaleString();
+                }
+            };
+            ScrollTrigger.create({
+                trigger: stat,
+                start: 'top 80%',
+                onEnter: () => updateCount()
+            });
         });
     </script>
 </body>
