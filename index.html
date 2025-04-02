@@ -261,30 +261,19 @@
         // Enhanced counter animation function with easing
         function animateCounter(element, target) {
             let current = 0;
-            let progress = 0;
             const duration = 2000; // 2 seconds
-            const startTime = performance.now();
-
-            function easeOutQuart(x) {
-                return 1 - Math.pow(1 - x, 4);
-            }
-
-            function updateCounter(currentTime) {
-                const elapsed = currentTime - startTime;
-                progress = Math.min(elapsed / duration, 1);
-                
-                current = Math.floor(easeOutQuart(progress) * target);
+            const step = Math.ceil(target / (duration / 16)); // Update every 16ms (60fps)
+            
+            function update() {
+                current = Math.min(current + step, target);
                 element.textContent = current;
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
+                
+                if (current < target) {
+                    requestAnimationFrame(update);
                 }
             }
-
-            requestAnimationFrame(updateCounter);
-        }
+            
+            update();
         }
 
         // Initialize counters with enhanced intersection observer
