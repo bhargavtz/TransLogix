@@ -1,0 +1,124 @@
+{
+    "shipments": [
+        {
+            "tracking_id": "TL1001",
+            "status": "In Transit",
+            "current_location": "Mumbai, India",
+            "current_coordinates": {"lat": 19.0760, "lng": 72.8777},
+            "destination": "Ahmedabad, India",
+            "destination_coordinates": {"lat": 23.0225, "lng": 72.5714},
+            "estimated_delivery": "2024-01-20",
+            "customer_name": "Rajesh Patel",
+            "contact": "+91 9876543210",
+            "package_details": {
+                "weight": "5.2 kg",
+                "dimensions": "30x25x20 cm",
+                "type": "Electronics"
+            },
+            "updates": [
+                {
+                    "timestamp": "2024-01-15T10:30:00",
+                    "location": "Mumbai, India",
+                    "status": "Shipment Picked Up",
+                    "notes": "Package received at Mumbai hub"
+                },
+                {
+                    "timestamp": "2024-01-16T15:45:00",
+                    "location": "Mumbai, India",
+                    "status": "In Transit",
+                    "notes": "Package dispatched to Ahmedabad"
+                }
+            ]
+        },
+        {
+            "tracking_id": "TL1002",
+            "status": "Delivered",
+            "current_location": "Delhi, India",
+            "current_coordinates": {"lat": 28.6139, "lng": 77.2090},
+            "destination": "Delhi, India",
+            "destination_coordinates": {"lat": 28.6139, "lng": 77.2090},
+            "estimated_delivery": "2024-01-15",
+            "customer_name": "Priya Sharma",
+            "contact": "+91 9876543211",
+            "package_details": {
+                "weight": "2.1 kg",
+                "dimensions": "20x15x10 cm",
+                "type": "Clothing"
+            },
+            "updates": [
+                {
+                    "timestamp": "2024-01-13T09:00:00",
+                    "location": "Mumbai, India",
+                    "status": "Shipment Picked Up",
+                    "notes": "Package received in good condition"
+                },
+                {
+                    "timestamp": "2024-01-14T14:30:00",
+                    "location": "Delhi, India",
+                    "status": "Out for Delivery",
+                    "notes": "Package out for last-mile delivery"
+                },
+                {
+                    "timestamp": "2024-01-15T11:20:00",
+                    "location": "Delhi, India",
+                    "status": "Delivered",
+                    "notes": "Successfully delivered to recipient"
+                }
+            ]
+        },
+        {
+            "tracking_id": "TL1003",
+            "status": "Processing",
+            "current_location": "Bangalore, India",
+            "current_coordinates": {"lat": 12.9716, "lng": 77.5946},
+            "destination": "Chennai, India",
+            "destination_coordinates": {"lat": 13.0827, "lng": 80.2707},
+            "estimated_delivery": "2024-01-22",
+            "customer_name": "Arun Kumar",
+            "contact": "+91 9876543212",
+            "package_details": {
+                "weight": "1.5 kg",
+                "dimensions": "15x12x8 cm",
+                "type": "Documents"
+            },
+            "updates": [
+                {
+                    "timestamp": "2024-01-17T08:15:00",
+                    "location": "Bangalore, India",
+                    "status": "Processing",
+                    "notes": "Package received at sorting facility"
+                }
+            ]
+        },
+        {
+            "tracking_id": "TL1004",
+            "status": "Out for Delivery",
+            "current_location": "Pune, India",
+            "current_coordinates": {"lat": 18.5204, "lng": 73.8567},
+            "destination": "Pune, India",
+            "destination_coordinates": {"lat": 18.5204, "lng": 73.8567},
+            "estimated_delivery": "2024-01-18",
+            "customer_name": "Sneha Desai",
+            "contact": "+91 9876543213",
+            "package_details": {
+                "weight": "3.7 kg",
+                "dimensions": "25x20x15 cm",
+                "type": "Home Appliance"
+            },
+            "updates": [
+                {
+                    "timestamp": "2024-01-16T11:00:00",
+                    "location": "Pune, India",
+                    "status": "Shipment Picked Up",
+                    "notes": "Package received at local hub"
+                },
+                {
+                    "timestamp": "2024-01-17T16:30:00",
+                    "location": "Pune, India",
+                    "status": "Out for Delivery",
+                    "notes": "Package with delivery agent"
+                }
+            ]
+        }
+    ]
+}

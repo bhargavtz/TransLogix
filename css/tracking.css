@@ -1,0 +1,95 @@
+.tracking-container {
+    padding: 2rem 0;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.tracking-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.tracking-card-header {
+    background: #007bff;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.tracking-details {
+    padding: 1.5rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.status-in-transit { background-color: #ffc107; }
+.status-delivered { background-color: #28a745; }
+.status-processing { background-color: #17a2b8; }
+.status-out-for-delivery { background-color: #fd7e14; }
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-point {
+    position: absolute;
+    left: -2rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #007bff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#map {
+    height: 400px;
+    border-radius: 0 0 8px 8px;
+}
+
+@media (max-width: 768px) {
+    .tracking-container {
+        padding: 1rem;
+    }
+    
+    .timeline {
+        padding-left: 1.5rem;
+    }
+    
+    .timeline-point {
+        left: -1.5rem;
+    }
+    
+    #map {
+        height: 300px;
+    }
+}
