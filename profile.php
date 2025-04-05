@@ -12,7 +12,7 @@ require_once 'config.php';
 $success_message = '';
 $error_message = '';
 
-// Initialize user array with default values
+
 $user = array(
     'id' => 0,
     'username' => '',
@@ -20,7 +20,7 @@ $user = array(
     'phone_number' => '',
     'address' => '',
     'password' => '',
-    'name' => '' // Added for profile display
+    'name' => ''
 );
 
 // Get user data
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
             
             if(mysqli_stmt_execute($stmt)) {
                 $success_message = "Profile updated successfully!";
-                // Update session data
+           
                 $user['username'] = $username;
                 $user['email'] = $email;
                 $user['phone_number'] = $phone;
