@@ -1,0 +1,88 @@
+/* CSS-only Counter Animations */
+
+/* Counter Animation Keyframes */
+@keyframes count-up {
+    0% { --num: 0; }
+    10% { --num: 10; }
+    20% { --num: 20; }
+    30% { --num: 30; }
+    40% { --num: 40; }
+    50% { --num: 50; }
+    60% { --num: 60; }
+    70% { --num: 70; }
+    80% { --num: 80; }
+    90% { --num: 90; }
+    100% { --num: 100; }
+}
+
+/* Counter display using CSS counters and custom properties */
+.counter-section {
+    counter-reset: stat-counter;
+}
+
+.counter-wrapper {
+    --duration: 2s;
+    --delay: 0.2s;
+    --easing: ease-out;
+    --final-num: 100;
+    --num: 0;
+    
+    animation: count-up var(--duration) var(--easing) forwards;
+    animation-delay: var(--delay);
+    animation-play-state: paused;
+}
+
+.counter-wrapper.in-view {
+    animation-play-state: running;
+}
+
+/* Specific counter styles */
+.counter-5000 {
+    --final-num: 5000;
+}
+
+.counter-150 {
+    --final-num: 150;
+}
+
+.counter-98 {
+    --final-num: 98;
+}
+
+.counter-50 {
+    --final-num: 50;
+}
+
+.counter-1000 {
+    --final-num: 1000;
+}
+
+.counter-25 {
+    --final-num: 25;
+}
+
+/* Counter display using CSS custom properties */
+.counter-display::before {
+    content: calc(var(--num) * var(--final-num) / 100);
+    font-weight: bold;
+}
+
+/* Intersection Observer Polyfill with CSS */
+@media (prefers-reduced-motion: no-preference) {
+    .counter-wrapper {
+        animation-play-state: paused;
+    }
+    
+    /* This will be triggered by JavaScript-free scroll detection */
+    .counter-wrapper.in-view {
+        animation-play-state: running;
+    }
+}
+
+/* CSS-only scroll detection using scroll timeline (modern browsers) */
+@supports (animation-timeline: scroll()) {
+    .counter-wrapper {
+        animation-timeline: scroll();
+        animation-range: entry 10% cover 30%;
+    }
+}

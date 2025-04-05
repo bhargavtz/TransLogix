@@ -1,0 +1,315 @@
+/* CSS Animations for TransLogix Website */
+
+/* Base Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tilt {
+    0% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+    100% { transform: rotate(-1deg); }
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Counter Animation Keyframes */
+@keyframes countTo5000 {
+    from { content: "0"; }
+    20% { content: "1000"; }
+    40% { content: "2000"; }
+    60% { content: "3000"; }
+    80% { content: "4000"; }
+    to { content: "5000"; }
+}
+
+@keyframes countTo150 {
+    from { content: "0"; }
+    20% { content: "30"; }
+    40% { content: "60"; }
+    60% { content: "90"; }
+    80% { content: "120"; }
+    to { content: "150"; }
+}
+
+@keyframes countTo98 {
+    from { content: "0"; }
+    20% { content: "20"; }
+    40% { content: "40"; }
+    60% { content: "60"; }
+    80% { content: "80"; }
+    to { content: "98"; }
+}
+
+@keyframes countTo50 {
+    from { content: "0"; }
+    20% { content: "10"; }
+    40% { content: "20"; }
+    60% { content: "30"; }
+    80% { content: "40"; }
+    to { content: "50"; }
+}
+
+@keyframes countTo1000 {
+    from { content: "0"; }
+    20% { content: "200"; }
+    40% { content: "400"; }
+    60% { content: "600"; }
+    80% { content: "800"; }
+    to { content: "1000"; }
+}
+
+@keyframes countTo25 {
+    from { content: "0"; }
+    20% { content: "5"; }
+    40% { content: "10"; }
+    60% { content: "15"; }
+    80% { content: "20"; }
+    to { content: "25"; }
+}
+
+/* Carousel Animation */
+@keyframes testimonialSlide {
+    0%, 25% { transform: translateX(0); }
+    33.33%, 58.33% { transform: translateX(-100%); }
+    66.66%, 91.66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+/* Scroll Reveal Animation */
+@keyframes revealOnScroll {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply Animations */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.animate-tilt {
+    animation: tilt 6s ease-in-out infinite;
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Counter Animations with CSS-only implementation */
+.stat-number[data-target="5000"]::after {
+    content: "0";
+    animation: countTo5000 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.stat-number[data-target="150"]::after {
+    content: "0";
+    animation: countTo150 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.stat-number[data-target="98"]::after {
+    content: "0";
+    animation: countTo98 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.stat-number[data-target="50"]::after {
+    content: "0";
+    animation: countTo50 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.counter[data-target="150"]::after {
+    content: "0";
+    animation: countTo150 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.counter[data-target="1000"]::after {
+    content: "0";
+    animation: countTo1000 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.counter[data-target="98"]::after {
+    content: "0";
+    animation: countTo98 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+.counter[data-target="25"]::after {
+    content: "0";
+    animation: countTo25 2s forwards ease-out;
+    animation-delay: 0.5s;
+    animation-play-state: paused;
+}
+
+/* Testimonial Carousel CSS-only implementation */
+#testimonialSlider {
+    animation: testimonialSlide 15s infinite ease-in-out;
+    animation-play-state: running;
+}
+
+#testimonialSlider:hover {
+    animation-play-state: paused;
+}
+
+/* Scroll-triggered animations using CSS only */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stat-number::after, .counter::after {
+        animation-play-state: running;
+    }
+    
+    .animate-on-scroll {
+        animation: revealOnScroll 1s forwards;
+        animation-play-state: paused;
+    }
+    
+    /* Use intersection observer polyfill via CSS */
+    .animate-on-scroll:nth-child(1) { animation-delay: 0.1s; }
+    .animate-on-scroll:nth-child(2) { animation-delay: 0.2s; }
+    .animate-on-scroll:nth-child(3) { animation-delay: 0.3s; }
+    .animate-on-scroll:nth-child(4) { animation-delay: 0.4s; }
+    .animate-on-scroll:nth-child(5) { animation-delay: 0.5s; }
+    .animate-on-scroll:nth-child(6) { animation-delay: 0.6s; }
+}
+
+/* Additional Animations */
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Hover Animations */
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Additional Scroll Animations */
+.scroll-fade-in {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    transform: translateY(20px);
+}
+
+.scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CSS-only counter display */
+.stat-number[data-target] {
+    position: relative;
+}
+
+.stat-number[data-target]::after {
+    position: absolute;
+    left: 0;
+}
+
+.stat-number[data-target] {
+    color: transparent;
+}
+
+.counter[data-target] {
+    position: relative;
+}
+
+.counter[data-target]::after {
+    position: absolute;
+    left: 0;
+}
+
+.counter[data-target] {
+    color: transparent;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+}

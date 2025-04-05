@@ -1,0 +1,179 @@
+/* Advanced Testimonial Slider Styles and Animations */
+
+/* Container Styles */
+.testimonial-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-container.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card Type Specific Styles */
+.featured-card {
+    border-left: 4px solid #3b82f6;
+    background: linear-gradient(to right, rgba(219, 234, 254, 0.3), rgba(255, 255, 255, 1));
+}
+
+.industry-card {
+    border-left: 4px solid #10b981;
+    background: linear-gradient(to right, rgba(209, 250, 229, 0.3), rgba(255, 255, 255, 1));
+}
+
+.international-card {
+    border-left: 4px solid #8b5cf6;
+    background: linear-gradient(to right, rgba(237, 233, 254, 0.3), rgba(255, 255, 255, 1));
+}
+
+/* Enhanced Card Styles */
+.testimonial-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.testimonial-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0.1), transparent);
+    transition: height 0.3s ease;
+    z-index: 0;
+}
+
+.testimonial-card:hover:before {
+    height: 100%;
+}
+
+/* Quote Icon Animation */
+.quote-icon {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover .quote-icon {
+    transform: rotate(10deg) scale(1.2);
+    opacity: 0.9;
+}
+
+/* Client Image Styles */
+.client-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3b82f6;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card:hover .client-image {
+    transform: scale(1.05);
+    border-color: #2563eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Rating Stars Animation */
+.rating i {
+    transition: all 0.2s ease;
+}
+
+.testimonial-card:hover .rating i {
+    transform: scale(1.2);
+    color: #f59e0b;
+}
+
+/* Navigation Button Styles */
+.testimonial-nav-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-nav-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.testimonial-nav-btn:hover:before {
+    left: 100%;
+}
+
+/* Swiper Pagination Custom Styles */
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(59, 130, 246, 0.5);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #3b82f6;
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .testimonial-container {
+        margin-bottom: 2rem;
+    }
+    
+    .featured-card, .industry-card, .international-card {
+        border-left: none;
+        border-top: 4px solid #3b82f6;
+    }
+    
+    .industry-card {
+        border-top-color: #10b981;
+    }
+    
+    .international-card {
+        border-top-color: #8b5cf6;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes pulse-subtle {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.animate-pulse-subtle {
+    animation: pulse-subtle 2s infinite;
+}
+
+/* Slide Transition Animations */
+.swiper-slide-active .testimonial-card {
+    animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}

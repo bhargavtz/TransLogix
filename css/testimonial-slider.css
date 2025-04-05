@@ -1,0 +1,141 @@
+/* Testimonial Slider Animations and Styles */
+
+/* Main container styles */
+.testimonial-slider {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+    margin: 30px 0;
+}
+
+/* Testimonial card styles */
+.testimonial-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    margin: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Client image styles */
+.client-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3b82f6;
+    margin-bottom: 1rem;
+}
+
+/* Quote icon styles */
+.quote-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #dbeafe;
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+/* Client info styles */
+.client-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.client-name {
+    font-weight: 600;
+    color: #1e3a8a;
+    margin-bottom: 0.25rem;
+}
+
+.client-position {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Rating stars styles */
+.rating {
+    display: flex;
+    margin: 0.5rem 0;
+    color: #f59e0b;
+}
+
+/* Slider navigation styles */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.slider-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.slider-nav-btn:hover {
+    background-color: #3b82f6;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Slider animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* Pagination dots */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: #3b82f6;
+    transform: scale(1.2);
+}

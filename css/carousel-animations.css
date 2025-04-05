@@ -1,0 +1,152 @@
+/* CSS-only Carousel Animations */
+
+/* Carousel Animation Keyframes */
+@keyframes carousel-slide {
+    0%, 25% { transform: translateX(0); }
+    33.33%, 58.33% { transform: translateX(-100%); }
+    66.66%, 91.66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes carousel-fade {
+    0%, 25% { opacity: 1; }
+    29%, 33% { opacity: 0; }
+    33.33%, 58.33% { opacity: 1; }
+    62%, 66% { opacity: 0; }
+    66.66%, 91.66% { opacity: 1; }
+    95%, 100% { opacity: 0; }
+}
+
+/* Carousel Controls Animation */
+@keyframes pulse-control {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* CSS-only Carousel Implementation */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    width: 300%; /* For 3 slides */
+    animation: carousel-slide 15s infinite ease-in-out;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.carousel-slide {
+    width: 33.333%; /* For 3 slides */
+    flex-shrink: 0;
+}
+
+/* CSS-only Carousel Controls */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.carousel-control:hover {
+    animation: pulse-control 1s infinite;
+    background: #f8f9fa;
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+/* CSS-only Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+/* Active indicator animation */
+@keyframes indicator-active {
+    0%, 25% { background: rgba(255,255,255,1); }
+    33.33%, 58.33% { background: rgba(255,255,255,0.5); }
+    66.66%, 91.66% { background: rgba(255,255,255,0.5); }
+    100% { background: rgba(255,255,255,1); }
+}
+
+@keyframes indicator-active-2 {
+    0%, 25% { background: rgba(255,255,255,0.5); }
+    33.33%, 58.33% { background: rgba(255,255,255,1); }
+    66.66%, 91.66% { background: rgba(255,255,255,0.5); }
+    100% { background: rgba(255,255,255,0.5); }
+}
+
+@keyframes indicator-active-3 {
+    0%, 25% { background: rgba(255,255,255,0.5); }
+    33.33%, 58.33% { background: rgba(255,255,255,0.5); }
+    66.66%, 91.66% { background: rgba(255,255,255,1); }
+    100% { background: rgba(255,255,255,0.5); }
+}
+
+.carousel-indicator:nth-child(1) {
+    animation: indicator-active 15s infinite;
+}
+
+.carousel-indicator:nth-child(2) {
+    animation: indicator-active-2 15s infinite;
+}
+
+.carousel-indicator:nth-child(3) {
+    animation: indicator-active-3 15s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-control {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .carousel-indicators {
+        bottom: 10px;
+    }
+    
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
