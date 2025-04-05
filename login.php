@@ -2,10 +2,12 @@
 session_start();
 require_once 'config.php';
 
+// Debugging: Check if the connection is established
 if (!isset($conn)) {
     die("Database connection (\$conn) is not set. Check your config.php file.");
 }
 
+// Initialize error variable
 $login_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $userType = $_POST['user_type'];
 
- 
+    // Determine if input is email or username
     $is_email = filter_var($login_identifier, FILTER_VALIDATE_EMAIL);
 
     if ($userType === 'admin') {
@@ -72,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - TransLogix</title>
-
+    <!-- filepath: c:\xampp\htdocs\TransLogix\login.php -->
 <link rel="stylesheet" href="/TransLogix/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">

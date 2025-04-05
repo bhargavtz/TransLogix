@@ -1,31 +1,15 @@
 <?php
-include 'config.php';
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cardNumber = $_POST['card_number'] ?? '';
-    $expiryDate = $_POST['expiry_date'] ?? '';
-    $cvv = $_POST['cvv'] ?? '';
-    $upi = $_POST['upi'] ?? '';
+// Fetch booking details from session or POST data
+$email = $_SESSION['email'] ?? $_POST['email'] ?? '';
+$phone = $_SESSION['phone'] ?? $_POST['phone'] ?? '';
+$price = $_SESSION['price'] ?? $_POST['price'] ?? '';
 
-    if (!empty($cardNumber) && !empty($expiryDate) && !empty($cvv)) {
-        // Simulate payment processing
-        $paymentSuccess = true; 
-        if ($paymentSuccess) {
-            echo "<script>alert('Payment successful!');</script>";
-        } else {
-            echo "<script>alert('Payment failed. Please try again.');</script>";
-        }
-    } elseif (!empty($upi)) {
-        
-        $upiSuccess = true; 
-        if ($upiSuccess) {
-            echo "<script>alert('UPI payment successful!');</script>";
-        } else {
-            echo "<script>alert('UPI payment failed. Please try again.');</script>";
-        }
-    } else {
-        echo "<script>alert('Please fill in all payment details.');</script>";
-    }
+// If booking details are missing, redirect to the booking page
+if (empty($email) || empty($phone) || empty($price)) {
+    header('Location: book.php');
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -33,108 +17,100 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Payment Portal</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .payment-card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .payment-card:hover {
-            transform: translateY(-5px);
-        }
-        .input-field {
-            border: 1px solid #e2e8f0;
-            transition: border-color 0.3s ease;
-        }
-        .input-field:focus {
-            border-color: #4299e1;
-            outline: none;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #4361ee, #3f37c9);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
-        }
-    </style>
+    <title>Payment - TransLogix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 min-h-screen py-10">
-    <div class="container mx-auto px-4">
-        <div class="max-w-md mx-auto bg-white rounded-xl payment-card p-8">
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold text-gray-800">Secure Payment</h1>
-                <p class="text-gray-600">Enter your payment details to proceed</p>
-            </div>
+<body class="bg-gray-100 dark:bg-gray-900">
+    <?php include 'navbar.php'; ?>
 
-            <form method="post">
-                <div class="mb-6">
-                    <label for="card_number" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
-                    <input
-                        type="text"
-                        id="card_number"
-                        name="card_number"
-                        class="input-field w-full px-3 py-2 rounded-md"
-                        placeholder="4242 4242 4242 4242"
-                        required
-                    >
-                </div>
-
-                <div class="flex gap-4 mb-6">
-                    <div class="w-1/2">
-                        <label for="expiry_date" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
-                        <input
-                            type="text"
-                            id="expiry_date"
-                            name="expiry_date"
-                            class="input-field w-full px-3 py-2 rounded-md"
-                            placeholder="MM/YY"
-                            required
-                        >
+    <!-- Payment Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Complete Your Payment</h2>
+                <div class="space-y-6">
+                    <!-- Booking Details -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Booking Details</h3>
+                        <p class="text-gray-600 dark:text-gray-300"><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+                        <p class="text-gray-600 dark:text-gray-300"><strong>Phone:</strong> <?php echo htmlspecialchars($phone); ?></p>
+                        <p class="text-gray-600 dark:text-gray-300"><strong>Price:</strong> ₹<?php echo htmlspecialchars($price); ?></p>
                     </div>
-                    <div class="w-1/2">
-                        <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
-                        <input
-                            type="text"
-                            id="cvv"
-                            name="cvv"
-                            class="input-field w-full px-3 py-2 rounded-md"
-                            placeholder="123"
-                            required
-                        >
+
+                    <!-- Payment Options -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Select Payment Method</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <button class="payment-option bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                <i class="fas fa-university text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                                <p class="text-gray-900 dark:text-white">Net Banking</p>
+                            </button>
+                            <button class="payment-option bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                <i class="fas fa-credit-card text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                                <p class="text-gray-900 dark:text-white">Credit/Debit Card</p>
+                            </button>
+                            <button class="payment-option bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                <i class="fas fa-mobile-alt text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                                <p class="text-gray-900 dark:text-white">UPI</p>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="mb-6">
-                    <label for="upi" class="block text-sm font-medium text-gray-700 mb-1">UPI ID (Optional)</label>
-                    <input
-                        type="text"
-                        id="upi"
-                        name="upi"
-                        class="input-field w-full px-3 py-2 rounded-md"
-                        placeholder="example@upi"
-                    >
-                </div>
-
-                <div class="text-center">
-                    <button
-                        type="submit"
-                        class="btn-primary w-full px-4 py-3 rounded-md text-white font-medium"
-                    >
-                        Proceed to Payment
+                    <!-- Payment Button -->
+                    <button id="payNow" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                        Pay ₹<?php echo htmlspecialchars($price); ?>
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
+    </section>
 
-        <div class="text-center mt-8 text-gray-600 text-sm">
-            <p>By proceeding, you agree to our <a href="#" class="text-blue-500 hover:text-blue-700">Terms of Service</a> and <a href="#" class="text-blue-500 hover:text-blue-700">Privacy Policy</a></p>
-        </div>
-    </div>
+    <!-- Footer -->
+    <?php include 'footer.php'; ?>
+
+    <script>
+        document.getElementById('payNow').addEventListener('click', function () {
+            // Simulate real-time payment processing
+            swal({
+                title: "Processing Payment",
+                text: "Please wait while we process your payment...",
+                icon: "info",
+                buttons: false,
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                timer: 3000
+            }).then(() => {
+                // Simulate successful payment
+                swal({
+                    title: "Payment Successful!",
+                    text: "Your payment of ₹<?php echo htmlspecialchars($price); ?> has been completed successfully.",
+                    icon: "success",
+                    button: "OK"
+                }).then(() => {
+                    // Redirect to a success page or dashboard
+                    window.location.href = "dashboard.php";
+                });
+
+                // Simulate real-time notification (e.g., push notification)
+                if (Notification.permission === "granted") {
+                    new Notification("Payment Successful", {
+                        body: "Your payment of ₹<?php echo htmlspecialchars($price); ?> has been completed successfully.",
+                        icon: "https://cdn-icons-png.flaticon.com/512/190/190411.png"
+                    });
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            new Notification("Payment Successful", {
+                                body: "Your payment of ₹<?php echo htmlspecialchars($price); ?> has been completed successfully.",
+                                icon: "https://cdn-icons-png.flaticon.com/512/190/190411.png"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

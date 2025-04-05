@@ -8,24 +8,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center space-x-4">
                 <a href="/TransLogix/index.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">Home</a>
-                <div class="relative group">
-                    <a href="/TransLogix/services.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300 flex items-center">
-                        Services
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 hidden group-hover:block">
-                        <div class="py-1">
-                            <a href="/TransLogix/services/road-transport.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Road Transport</a>
-                            <a href="/TransLogix/services/rail-cargo.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rail Cargo</a>
-                            <a href="/TransLogix/services/air-freight.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Air Freight</a>
-                            <a href="/TransLogix/services/warehousing.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Warehousing</a>
-                            <a href="/TransLogix/services/courier-services.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Courier Services</a>
-                            <a href="/TransLogix/services/last-mile-delivery.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Last Mile Delivery</a>
-                        </div>
-                    </div>
-                </div>
+                <a href="/TransLogix/services.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">Services</a>
                 <a href="/TransLogix/about.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">About</a>
                 <a href="/TransLogix/blog.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">Blog</a>
                 <a href="/TransLogix/contact.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">Contact</a>

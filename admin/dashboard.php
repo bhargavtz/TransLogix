@@ -7,9 +7,6 @@ if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true)
 }
 
 require_once '../config.php';
-
-// Check if admin is logged in
-$adminName = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -22,127 +19,201 @@ $adminName = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : null;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/TransLogix/css/user-nav.css">
+
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --background-light: #f8f9fa;
+            --text-dark: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-card {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-    <!-- Sidebar -->
-    <aside class="fixed top-0 left-0 h-screen w-64 bg-white dark:bg-gray-800 shadow-lg z-50 transition-transform duration-300 transform">
-        <div class="p-6">
-            <h2 class="text-xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h2>
+    <?php include '../navbar.php'; ?>
+        <a class="navbar-brand" href="#">TransLogix Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+            </ul>
         </div>
-        <nav class="mt-6">
-            <div class="px-4 space-y-2">
-                <a href="dashboard.php" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
-                    Dashboard
-                </a>
-                <a href="users.php" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-users mr-3"></i>
-                    User Management
-                </a>
-                <a href="shipments.php" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-box mr-3"></i>
-                    Shipments
-                </a>
-                <a href="reports.php" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-chart-line mr-3"></i>
-                    Reports
-                </a>
-                <a href="settings.php" class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-cog mr-3"></i>
-                    Settings
-                </a>
-            </div>
-        </nav>
-    </aside>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="ml-64 p-8">
-        <!-- Top Bar -->
-        <div class="flex justify-between items-center mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-            <div class="flex-1">
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h1>
-                <p class="text-gray-600 dark:text-gray-300">Manage users, shipments, and system settings</p>
+    <div class="container mt-4">
+        <h2 class="mb-4">Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h2>
+        
+        <div class="row">
+            <!-- User Management -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-users mr-2"></i>User Management
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <h4>Total Users</h4>
+                            <p class="h2 mb-4">150</p>
+                            <a href="users.php" class="btn btn-custom">Manage</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
-                </button>
-                <div class="relative" x-data="{ isOpen: false }">
-                    <button @click="isOpen = !isOpen" class="flex items-center space-x-2 focus:outline-none">
-                        <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
-                        <span class="text-gray-700 dark:text-white">Admin</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                        <a href="profile.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-user mr-2"></i> Profile
-                        </a>
-                        <a href="settings.php" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-cog mr-2"></i> Settings
-                        </a>
-                        <hr class="border-gray-200 dark:border-gray-700">
-                        <a href="./logout.php" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                        </a>
+
+            <!-- Shipment Tracking -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-shipping-fast mr-2"></i>Shipments
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h4>Active Shipments</h4>
+                            <p class="h2 mb-4">45</p>
+                            <a href="shipments.php" class="btn btn-custom">Manage</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar mr-2"></i>Reports
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h4>Monthly Stats</h4>
+                            <p class="mb-4">View detailed reports</p>
+                            <a href="reports.php" class="btn btn-custom">View Report</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Admin Actions -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 quick-action">
-                <i class="fas fa-user-shield text-3xl text-blue-600 dark:text-blue-400 mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Users</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Add, edit, or remove users</p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 quick-action">
-                <i class="fas fa-box text-3xl text-blue-600 dark:text-blue-400 mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Shipments</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Track and update shipments</p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 quick-action">
-                <i class="fas fa-chart-line text-3xl text-blue-600 dark:text-blue-400 mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">View Reports</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Analyze system performance</p>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION["admin_username"]); ?>!</h2>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">User Management</h5>
+                    <p class="card-text">View and manage user information</p>
+                    <a href="users.php" class="btn btn-primary">View Users</a>
+                </div>
             </div>
         </div>
-
-        <div class="dashboard-card">
-            <h2>Manage Users</h2>
-            <p>Add, edit, or remove users.</p>
-            <a href="manage-users.php" class="btn">Manage Users</a>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tracking Management</h5>
+                    <p class="card-text">Manage shipment tracking</p>
+                    <a href="tracking.php" class="btn btn-primary">View Tracking</a>
+                </div>
+            </div>
         </div>
-    </main>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Reports</h5>
+                    <p class="card-text">Generate system reports</p>
+                    <a href="reports.php" class="btn btn-primary">View Reports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const html = document.documentElement;
-
-        darkModeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('darkMode', html.classList.contains('dark'));
-        });
-
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            html.classList.add('dark');
-        }
-
-        // GSAP Animations
-        gsap.from('.quick-action', {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out'
-        });
-    </script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
