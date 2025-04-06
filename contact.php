@@ -9,7 +9,42 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="bg-white dark:bg-gray-900 transition-colors duration-200">
-<?php include 'navbar.php'; ?>
+    <!-- Navigation (Same as other pages) -->
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/TransLogix/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">TransLogix</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/TransLogix/" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                    <a href="/TransLogix/about.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                    <a href="/TransLogix/services.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Services</a>
+                    <a href="/TransLogix/tracking.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Tracking</a>
+                    <a href="/TransLogix/contact.php" class="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/TransLogix/" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+                <a href="/TransLogix/about.php" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="/TransLogix/services.php" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Services</a>
+                <a href="/TransLogix/tracking.php" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Tracking</a>
+                <a href="/TransLogix/contact.php" class="block px-3 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Contact Hero Section -->
     <section class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">

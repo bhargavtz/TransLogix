@@ -398,8 +398,7 @@ $user = $isLoggedIn ? $_SESSION['user'] : null; // Get user data if logged in
 
         // Enhanced dark mode toggle with system preference detection and smooth transitions
         const darkModeToggle = document.getElementById('darkModeToggle');
-// Use existing html variable instead of redeclaring
-document.documentElement;
+        const html = document.documentElement;
         const moonIcon = darkModeToggle.querySelector('.fa-moon');
         const sunIcon = darkModeToggle.querySelector('.fa-sun');
 
