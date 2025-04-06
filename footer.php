@@ -1,3 +1,20 @@
+<style>
+    html {
+        min-height: 100%;
+        position: relative;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+
 <footer class="bg-gray-100 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">

@@ -2,12 +2,10 @@
 session_start();
 require_once 'config.php';
 
-// Debugging: Check if the connection is established
 if (!isset($conn)) {
     die("Database connection (\$conn) is not set. Check your config.php file.");
 }
 
-// Initialize error variable
 $login_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $userType = $_POST['user_type'];
 
-    // Determine if input is email or username
+ 
     $is_email = filter_var($login_identifier, FILTER_VALIDATE_EMAIL);
 
     if ($userType === 'admin') {
@@ -74,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - TransLogix</title>
-    <!-- filepath: c:\xampp\htdocs\TransLogix\login.php -->
+
 <link rel="stylesheet" href="/TransLogix/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -88,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         @keyframes gradient {
@@ -102,30 +100,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 background-position: 0% 50%;
             }
         }
+
         .wrapper {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             width: 400px;
             padding: 30px;
             margin: 20px;
             border: 1px solid #ddd;
             animation: fadeIn 1s ease-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
         .form-group {
             margin-bottom: 25px;
         }
+
         .form-control {
             border-radius: 8px;
             padding: 12px;
             border: 1px solid #ced4da;
             transition: all 0.3s ease;
         }
+
         .form-control:focus {
             border-color: #80bdff;
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
+
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
@@ -134,20 +143,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-weight: 600;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(118, 75, 162, 0.5);
+            box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
         }
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(118, 75, 162, 0.3);
+            box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
         }
+
         .form-check-label {
             color: #666;
         }
+
         .login-options {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+        }
+
+        .alert {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>

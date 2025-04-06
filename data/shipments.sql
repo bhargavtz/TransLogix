@@ -30,3 +30,16 @@ INSERT INTO shipping_methods (name, description, base_cost, cost_per_kg, estimat
 ('Standard Ground', 'Economic ground shipping', 10.00, 2.50, '5-7 days'),
 ('Express Air', 'Fast air freight delivery', 25.00, 5.00, '2-3 days'),
 ('Same Day', 'Ultra-fast local delivery', 50.00, 7.50, '24 hours');
+
+INSERT INTO reports (report_type, title, description, generated_by, file_path, status)
+VALUES
+('Sales', 'Monthly Sales Report - March', 'Detailed sales analytics for March.', 1, 'reports/march_sales.pdf', 'approved'),
+('Inventory', 'Current Stock Overview', 'Snapshot of stock levels as of today.', 2, 'reports/stock_overview.xlsx', 'pending'),
+('Audit', 'Q1 Financial Audit', 'Audit report for Q1 fiscal year.', 3, 'reports/q1_audit.pdf', 'review'),
+('Logistics', 'Shipping Delays Analysis', 'Report on delayed shipments and reasons.', 4, 'reports/shipping_delays.pdf', 'rejected'),
+('Performance', 'Employee Performance Q1', 'Performance evaluations for Q1.', 2, 'reports/performance_q1.pdf', 'approved'),
+('Customer', 'Top 10 Customer Complaints', 'Analysis of frequent customer issues.', 6, 'reports/customer_complaints.pdf', 'pending'),
+('Returns', 'Product Returns Summary', 'Data on returned products Jan-Mar.', 1, 'reports/returns_summary.pdf', 'approved'),
+('Revenue', 'Quarterly Revenue Breakdown', 'Q1 revenue by channel.', 3, 'reports/revenue_q1.pdf', 'review'),
+('Forecast', 'Q2 Demand Forecast', 'Predicted demand and inventory needs.', 4, 'reports/demand_forecast_q2.xlsx', 'approved'),
+('Compliance', 'Data Privacy Compliance', 'Status of GDPR compliance initiatives.', 7, 'reports/gdpr_compliance.pdf', 'pending');

@@ -12,7 +12,7 @@ require_once 'config.php';
 $success_message = '';
 $error_message = '';
 
-// Initialize user array with default values
+
 $user = array(
     'id' => 0,
     'username' => '',
@@ -20,7 +20,7 @@ $user = array(
     'phone_number' => '',
     'address' => '',
     'password' => '',
-    'name' => '' // Added for profile display
+    'name' => ''
 );
 
 // Get user data
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
             
             if(mysqli_stmt_execute($stmt)) {
                 $success_message = "Profile updated successfully!";
-                // Update session data
+           
                 $user['username'] = $username;
                 $user['email'] = $email;
                 $user['phone_number'] = $phone;
@@ -174,8 +174,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['change_password'])) {
                 </button>
                 <div class="relative" x-data="{ isOpen: false }">
                     <button @click="isOpen = !isOpen" class="flex items-center space-x-2 focus:outline-none">
-                        <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
-                        <span class="text-gray-700 dark:text-white"><?php echo htmlspecialchars($user['name']); ?></span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/3686/3686930.png" alt="Profile" class="w-10 h-10 rounded-full object-cover bg-gray-100 dark:bg-gray-700">
+                        <span class="text-gray-700 dark:text-white"><?php echo htmlspecialchars($user['username']); ?></span>
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>

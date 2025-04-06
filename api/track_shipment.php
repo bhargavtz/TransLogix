@@ -3,65 +3,51 @@ require_once '../config.php';
 
 header('Content-Type: application/json');
 
-// Get tracking number from POST request
-$tracking_number = isset($_POST['tracking_number']) ? trim($_POST['tracking_number']) : '';
+$tracking_number = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $tracking_number = $_POST['tracking_number'] ?? '';
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $tracking_number = $_GET['tracking_number'] ?? '';
+}
 
 if (empty($tracking_number)) {
-    echo json_encode(['error' => 'Tracking number is required']);
+    echo json_encode(["error" => "Tracking number is required."]);
     exit;
 }
 
-try {
-    // Get shipment details
-    $stmt = $conn->prepare("
-        SELECT s.*, u.name as customer_name, u.phone_number as contact
-        FROM shipments s
-        LEFT JOIN users u ON s.user_id = u.id
-        WHERE s.tracking_number = ?
-    ");
-    
-    $stmt->bind_param('s', $tracking_number);
-    $stmt->execute();
-    $result = $stmt->get_result();
+$sql = "SELECT s.*, u.username AS customer_name, u.contact 
+        FROM shipments s 
+        LEFT JOIN users u ON s.user_id = u.id 
+        WHERE s.tracking_number = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $tracking_number);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
     $shipment = $result->fetch_assoc();
-    
-    if (!$shipment) {
-        echo json_encode(['error' => 'Shipment not found']);
-        exit;
-    }
-    
-    // Get shipment updates
-    $updates_stmt = $conn->prepare("
-        SELECT status, location, notes, timestamp
-        FROM shipment_updates
-        WHERE shipment_id = ?
-        ORDER BY timestamp DESC
-    ");
-    
-    $updates_stmt->bind_param('i', $shipment['id']);
-    $updates_stmt->execute();
-    $updates_result = $updates_stmt->get_result();
-    $updates = $updates_result->fetch_all(MYSQLI_ASSOC);
-    
-    // Format response
-    $response = [
-        'tracking_id' => $shipment['tracking_number'],
-        'status' => $shipment['status'],
-        'customer_name' => $shipment['customer_name'],
-        'contact' => $shipment['contact'],
-        'current_location' => $shipment['origin_address'],
-        'destination' => $shipment['destination_address'],
-        'estimated_delivery' => $shipment['created_at'], // You might want to add an estimated_delivery field to your shipments table
-        'package_details' => [
-            'weight' => 'N/A', // Add these fields to your shipments table if needed
-            'dimensions' => 'N/A',
-            'type' => 'Standard'
+    $shipment['current_coordinates'] = ['lat' => 23.0225, 'lng' => 72.5714]; // Example coordinates for Ahmedabad
+    $shipment['destination_coordinates'] = ['lat' => 19.0760, 'lng' => 72.8777]; // Example coordinates for Mumbai
+    $shipment['updates'] = [
+        [
+            'status' => $shipment['status'],
+            'timestamp' => $shipment['created_at'],
+            'location' => $shipment['origin_address'],
+            'notes' => 'Shipment registered'
         ],
-        'updates' => $updates
+        [
+            'status' => $shipment['status'],
+            'timestamp' => $shipment['updated_at'],
+            'location' => $shipment['destination_address'],
+            'notes' => 'Current status'
+        ]
     ];
-    
-    echo json_encode($response);
-    
-} catch (Exception $e) {
-    echo json_encode(['error' => 'An error occurred while fetching shipment details']);
+    echo json_encode($shipment);
+} else {
+    echo json_encode(["error" => "Tracking number not found."]);
 }
+
+$stmt->close();
+$conn->close();
+?>

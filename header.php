@@ -31,11 +31,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/TransLogix/css/main.css">
     <link rel="stylesheet" href="/TransLogix/css/testimonial-slider.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Boldonse&display=swap" rel="stylesheet">
     <style>
         /* Base styles with new color scheme */
         body {
             color: #000A26;
             background-color: #D6E6F2;
+            font-family: 'Afacad Flux', sans-serif;
         }
         .dark body {
             color: #D6E6F2;
@@ -63,5 +67,9 @@
         
         /* Footer color */
         footer { background-color: #000A26; color: #D6E6F2; }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Boldonse', sans-serif;
+        }
     </style>
 </head>
