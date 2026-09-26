@@ -129,7 +129,10 @@ include 'navbar.php'; // Corrected the path to the navigation file
 <?php include 'footer.php'; ?>
 
 <!-- Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMz6idD05pzwk17mcLQHcBBG9k8&callback=initMap" async defer></script>
+<?php
+$googleMapsApiKey = getenv('GOOGLE_MAPS_API_KEY') ?: '';
+?>
+<script src="https://maps.googleapis.com/maps/api/js?key=<?= htmlspecialchars(rawurlencode($googleMapsApiKey), ENT_QUOTES, 'UTF-8') ?>&callback=initMap" async defer></script>
 
 <!-- Custom JS -->
 <script src="js/tracking.js"></script>
